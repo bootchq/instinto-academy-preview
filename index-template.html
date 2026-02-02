@@ -245,7 +245,7 @@
             }
 
             const markdown = modules[moduleId];
-            content.innerHTML = marked(markdown);
+            content.innerHTML = marked.parse(markdown);
 
             // Update active button
             document.querySelectorAll('.nav button').forEach(btn => {
