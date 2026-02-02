@@ -6,10 +6,11 @@ const module2 = fs.readFileSync('/Users/noor/Documents/Obsidian Vault/Акаде
 // Escape backticks and template literals
 const escapeMarkdown = (md) => md.replace(/`/g, '\\`').replace(/\$/g, '\\$');
 
-const template = fs.readFileSync('index.html', 'utf8');
+const template = fs.readFileSync('index-template.html', 'utf8');
 const final = template
     .replace('MARKDOWN_MODULE_1', escapeMarkdown(module1))
-    .replace('MARKDOWN_MODULE_2', escapeMarkdown(module2));
+    .replace('MARKDOWN_MODULE_2', escapeMarkdown(module2))
+    .replace('https://cdn.jsdelivr.net/npm/marked/marked.min.js', './marked.umd.js');
 
-fs.writeFileSync('index-final.html', final);
-console.log('✅ HTML создан: index-final.html');
+fs.writeFileSync('index.html', final);
+console.log('✅ HTML создан: index.html');
