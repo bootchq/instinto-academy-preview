@@ -237,6 +237,13 @@
 
         function loadModule(moduleId) {
             const content = document.getElementById('content');
+
+            // Wait for marked to load
+            if (typeof marked === 'undefined') {
+                setTimeout(() => loadModule(moduleId), 100);
+                return;
+            }
+
             const markdown = modules[moduleId];
             content.innerHTML = marked(markdown);
 
