@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INSTINTO Academy - Модуль 1</title>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.2/marked.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -2421,7 +2421,21 @@ D) "Добрый день! Меня зовут Света. Какой разме
         function loadModule(moduleId) {
             const content = document.getElementById('content');
             const markdown = modules[moduleId];
-            content.innerHTML = marked(markdown);
+
+            // Check if marked is loaded
+            if (typeof marked === 'undefined') {
+                content.innerHTML = '<p style="color: red;">Ошибка: библиотека marked не загрузилась. Обновите страницу.</p>';
+                console.error('marked is not defined');
+                return;
+            }
+
+            try {
+                content.innerHTML = marked(markdown);
+            } catch (error) {
+                content.innerHTML = '<p style="color: red;">Ошибка при загрузке модуля: ' + error.message + '</p>';
+                console.error('Error loading module:', error);
+                return;
+            }
 
             // Update active button
             document.querySelectorAll('.nav button').forEach(btn => {
@@ -2431,7 +2445,10 @@ D) "Добрый день! Меня зовут Света. Какой разме
         }
 
         // Load first module on page load
-        window.onload = () => loadModule('module1');
+        window.addEventListener('load', function() {
+            console.log('Page loaded, marked defined:', typeof marked !== 'undefined');
+            loadModule('module1');
+        });
     </script>
 </body>
 </html>
