@@ -1221,7 +1221,7 @@ D) Сказать: "Сначала узнайте свой размер, пот�
         function loadModule(moduleId) {
             const content = document.getElementById('content');
             const markdown = modules[moduleId];
-            content.innerHTML = marked.parse(markdown);
+            content.innerHTML = marked(markdown);
 
             // Update active button
             document.querySelectorAll('.nav button').forEach(btn => {
