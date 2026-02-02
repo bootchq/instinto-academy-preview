@@ -2414,14 +2414,14 @@ D) "Добрый день! Меня зовут Света. Какой разме
 
 ---
 
-*Время: 30 минут | [← Содержание](00_Содержание.md) | [Модуль 4 →](Модуль_04_Выявление_потребностей.md)*
+*[← Содержание](00_Содержание.md) | [Модуль 4 →](Модуль_04_Выявление_потребностей.md)*
 `
         };
 
         function loadModule(moduleId) {
             const content = document.getElementById('content');
             const markdown = modules[moduleId];
-            content.innerHTML = marked.parse(markdown);
+            content.innerHTML = marked(markdown);
 
             // Update active button
             document.querySelectorAll('.nav button').forEach(btn => {
